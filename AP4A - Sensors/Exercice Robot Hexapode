@@ -1,0 +1,48 @@
+Exercice Robot Hexapode
+
+public class Patte {
+	public Patte(); //constructeur
+	public void retracter(); //effectue phase de rétraction
+	public void protracter(); //effectue phase de protraction
+}
+
+
+public class ContrôleurPatte extends Thread {
+	private Patte patte;
+	private ControleurCentral control;
+	private int id;
+
+	public ContrôleurPatte(int i, Patte p, ControleurCentral c) {
+		patte = p;
+		control = c;
+		id = i;
+	}
+
+	public void run () {
+		while (true) {
+			patte.retracter();
+			control.demanderAutorisation(id);
+			patte.protracter();
+			control... 
+		}
+	}
+
+}
+
+public class ControleurCentral {
+	private Boolean[] pattesPosee = new boolean[nb_pattes]; //1 si en protraction ou 0 si non	
+
+	public synchronized void demanderAutorisation(int id) {
+		while (( !pattesPosee[patteGauche(id)]) || (!pattesPosee[patteDroite(id)])) {
+			try { wait (); } catch (Exception e) { }
+		}
+	}
+}
+
+public class RobotHexapode (){
+
+	//Méthode main instancie tout les objets
+	public static void main(String[] args) {
+		
+	}
+}
